@@ -13,15 +13,15 @@ test('testing to see if we can get name from getName()', () => {
 });
 
 test('testing to see if we can get id from getId()', () => {
-    expect(employee.getName()).toBe('1');
+    expect(employee.getId()).toBe('1');
 });
 
 test('testing to see if we can get email from getEmail()', () => {
-    expect(employee.getName()).toBe('alexdiclothingco@icloud.com');
+    expect(employee.getEmail()).toBe('alexdiclothingco@icloud.com');
 });
 
 test('testing to see if we can get role from getRole()', () => {
-    expect(employee.getName()).toBe('Employee');
+    expect(employee.getRole()).toBe('Employee');
 });
 
 
