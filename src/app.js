@@ -3,7 +3,6 @@ const fs = require("fs");
 const path = require("path");
 const Manager = require('../lib/manager');
 const Intern = require('../lib/intern');
-const Employee = require('../lib/employee');
 const Engineer = require('../lib/engineer');
 const generateSite = require('./src/generate-site.js');
 const OUTPUT_DIR = path.resolve(__dirname, "output");
@@ -17,9 +16,9 @@ const promptManager = () => {
             name: 'name',
             message: 'What is your name? (Required)',
             validate: nameInput => {
-                if (nameInput){
+                if (nameInput) {
                     return true;
-                }else {
+                } else {
                     console.log('Please enter your name!');
                     return false;
                 }
@@ -30,9 +29,9 @@ const promptManager = () => {
             name: 'employeeId',
             message: 'Enter your Employee ID (Required)',
             validate: employeeId => {
-                if (employeeId){
+                if (employeeId) {
                     return true;
-                }else {
+                } else {
                     console.log('Please enter your Employee ID!');
                     return false;
                 }
@@ -43,9 +42,9 @@ const promptManager = () => {
             name: 'email',
             message: 'Enter your Email Address (Required)',
             validate: email => {
-                if (email){
+                if (email) {
                     return true;
-                }else {
+                } else {
                     console.log('Please enter your Email Address!');
                     return false;
                 }
@@ -56,9 +55,9 @@ const promptManager = () => {
             name: 'officeNumber',
             message: 'Enter your Office Number (Required)',
             validate: officeNumber => {
-                if (officeNumber){
+                if (officeNumber) {
                     return true;
-                }else {
+                } else {
                     console.log('Please enter your Office Number!');
                     return false;
                 }
@@ -81,15 +80,15 @@ const promptMenu = () => {
             choices: ['add an engineer', 'add an intern', 'finish building team']
         }])
         .then(userChoice => {
-            switch (userChoice.menu){
+            switch (userChoice.menu) {
                 case "add an engineer":
                     promptEngineer();
                     break;
-                    case "add an intern":
+                case "add an intern":
                     promptIntern();
                     break;
-                    default:
-                        buildTeam();
+                default:
+                    buildTeam();
             }
         });
 };
@@ -109,7 +108,7 @@ const promptEngineer = () => {
             validate: engineerName => {
                 if (engineerName) {
                     return true;
-                }else{
+                } else {
                     console.log('Please enter the name of engineer!');
                     return false;
                 }
@@ -120,9 +119,9 @@ const promptEngineer = () => {
             name: 'employeeId',
             message: 'Enter your Employee ID (Required)',
             validate: employeeId => {
-                if (employeeId){
+                if (employeeId) {
                     return true;
-                }else {
+                } else {
                     console.log('Please enter your Employee ID!');
                     return false;
                 }
@@ -133,14 +132,116 @@ const promptEngineer = () => {
             name: 'email',
             message: 'Enter your Email Address (Required)',
             validate: email => {
-                if (email){
+                if (email) {
                     return true;
-                }else {
+                } else {
                     console.log('Please enter your Email Address!');
                     return false;
                 }
             }
         },
+        {
+            type: 'input',
+            name: 'githubUsername',
+            message: 'Enter your Github Username (Required)',
+            validate: githubUsername => {
+                if (githubUsername) {
+                    return true;
+                } else {
+                    console.log('Please enter your Github Username!');
+                    return false;
+                }
+            }
+        },
 
-    ])
+    ]).then(answers => {
+        console.log(answers);
+        const engineer = new Engineer(answers.name, answers.employeeId, answers.email, answers.githubUsername)
+        teamMembers.push(engineer);
+        promptMenu();
+    })
+};
+
+
+const promptIntern = () => {
+    console.log(`
+    =============
+    Add a new Intern 
+    =============
+    `);
+
+    return inquirer.prompt([
+        {
+            type: 'input',
+            name: 'name',
+            message: 'What is the name of the intern? (Required)',
+            validate: internName => {
+                if (internName) {
+                    return true;
+                } else {
+                    console.log('Please enter the name of intern!');
+                    return false;
+                }
+            }
+        },
+        {
+            type: 'input',
+            name: 'internId',
+            message: 'Enter your Intern ID (Required)',
+            validate: internId => {
+                if (internId) {
+                    return true;
+                } else {
+                    console.log('Please enter your Intern ID!');
+                    return false;
+                }
+            }
+        },
+        {
+            type: 'input',
+            name: 'email',
+            message: 'Enter your Email Address (Required)',
+            validate: email => {
+                if (email) {
+                    return true;
+                } else {
+                    console.log('Please enter your Email Address!');
+                    return false;
+                }
+            }
+        },
+        {
+            type: 'input',
+            name: 'school',
+            message: 'Enter your School (Required)',
+            validate: school => {
+                if (school) {
+                    return true;
+                } else {
+                    console.log('Please enter your School!');
+                    return false;
+                }
+            }
+        },
+    ]).then(answers => {
+        console.log(answers);
+        const intern = new Intern(answers.name, answers.internId, answers.email, answers.school)
+        teamMembers.push(Intern);
+        promptMenu();
+    })
+};
+
+const buildTeam = () => {
+    console.log(`
+    =============
+    Team Built! 
+    =============
+    `);
+
+    if (!fs.existsSync(OUTPUT_DIR)){
+        fs.mkdirSync(OUTPUT_DIR)
+    }
+    fs.writeFileSync(outputPath, generateSite(teamMembers), "utf-8");
 }
+
+promptManager();
