@@ -3,16 +3,13 @@
   # Description 
   Team Profile Generator is intened to help build a team. From Interns to Engineers and Managers. Handling information such as, Employee IDs, Emails, Job Title, Schools, etc.
   # Table of Contents
-  * [Installation](#installation)
   * [Usage](#usage)
   * [Liscense](#liscense)
   * [Constributing](#contributing)
   * [Tests](#tests)
   * [Questions](#questions)
-  # Installation
-  Listed below are the dependencies that must be installed to run the project.
   # Usage
-  The usage of this application is, This app is used to help create and manage work teams.
+  The usage of this application is to help create and manage work teams.
   # Liscense
   The Liscense used for the project is The MIT liscense.
   ![Github liscense](http://img.shields.io/badge/liscense-MIT-blue-svg)
