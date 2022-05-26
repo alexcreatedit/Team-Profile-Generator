@@ -16,6 +16,6 @@
   # Contributing
   Contributors to the project include: Google
   # Tests
-  The following command is required to test run the project: 
+  The following command is required to test run the project: node app.js
   # Questions
-  If you have any questions about the project contact undefined alexdiclothingco@icloud.com
+  If you have any questions about the project contact via email at alexdiclothingco@icloud.com
