@@ -14,7 +14,7 @@
   # Usage
   The usage of this application is, This app is used to help create and manage work teams.
   # Liscense
-  The Liscense used for the project is undefined liscense.
+  The Liscense used for the project is The MIT liscense.
   ![Github liscense](http://img.shields.io/badge/liscense-MIT-blue-svg)
   # Contributing
   Contributors to the project include: Google
